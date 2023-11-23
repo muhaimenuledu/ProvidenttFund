@@ -1,0 +1,97 @@
+@* @using WebMatrix.Data;
+@using System.Diagnostics;
+@using Microsoft.AspNetCore.Mvc;
+@using Prototype1.Models;
+@using System.Data.SqlClient; *@
+@using System;
+@* @using Npgsql;
+@using System.Data;
+@using System.Text;
+@using MySql.Data; *@
+@using MySql.Data.MySqlClient;
+
+@* @using MySqlX.XDevAPI;
+@using MySqlX.XDevAPI.Common;
+@using MySqlX.XDevAPI.CRUD; *@
+
+@{
+    ViewData["Title"] = "Provident Fund List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">PF Overview</h1>
+</div>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PF List</title>
+</head>
+
+<body>
+
+    @{
+        string connStr = "server=localhost;user=magento;database=dotnet;port=3306;password=magento";
+        MySql.Data.MySqlClient.MySqlCommand cmd;
+        MySqlConnection conn = new MySqlConnection(connStr);
+        cmd = new MySql.Data.MySqlClient.MySqlCommand();
+
+        try
+        {
+            Console.WriteLine("Connecting to MySQL...");
+            conn.Open();
+            cmd.Connection = conn;
+
+            //***
+            // cmd.CommandText = "INSERT INTO demo VALUES(@Name, @ID, @Address, @Email)";
+            cmd.CommandText = "SELECT * FROM provident ORDER BY employee_id, period_from";
+            cmd.Prepare();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        Console.WriteLine("Done.");
+    }
+
+    <table class="table table-bordered table-striped" style="border: 1px solid;">
+        <tr style="border:1px solid">
+            <th style="border:1px solid" class="tt">Employee ID </th>
+            <th style="border:1px solid">Period From </th>
+            <th style="border:1px solid">Period To</th>
+            <th style="border:1px solid">Starting Balance Of Employee</th>
+            <th style="border:1px solid">Starting Balance Of Company</th>
+            <th style="border:1px solid">Employee Amount Of Contribution </th>
+            <th style="border:1px solid">Company Amount Of Contribution </th>
+            <th style="border:1px solid">Employee Profit </th>
+            <th style="border:1px solid">Company Profit</th>
+            <th style="border:1px solid">Closing Balance Of Employee</th>
+            <th style="border:1px solid">Closing Balance Of Company</th>
+        </tr>
+        @using (var reader = cmd.ExecuteReader())
+        {
+            @while (reader.Read())
+            {
+                <tr style="border:1px solid; margin: 10px 10px 10px 10px">
+                    <td style="border:1px solid; margin: 10px 10px 10px 10px">@reader["employee_id"]</td>
+                    <td style="border:1px solid">@reader["period_from"]</td>
+                    <td style="border:1px solid">@reader["period_to"]</td>
+                    <td style="border:1px solid">@reader["opening_blnc_emp"]</td>
+                    <td style="border:1px solid">@reader["opening_blnc_comp"]</td>
+                    <td style="border:1px solid">@reader["emp_amount"]</td>
+                    <td style="border:1px solid">@reader["comp_amount"]</td>
+                    <td style="border:1px solid">@reader["emp_profit"]</td>
+                    <td style="border:1px solid">@reader["comp_profit"]</td>
+                    <td style="border:1px solid">@reader["closing_blnc_comp"]</td>
+                    <td style="border:1px solid">@reader["closing_blnc_comp"]</td>
+
+
+                </tr>
+            }
+        }
+    </table>
+</body>
+
+</html>

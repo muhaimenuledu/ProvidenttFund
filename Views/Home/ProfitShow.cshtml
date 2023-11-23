@@ -1,0 +1,72 @@
+@using System;
+@using MySql.Data.MySqlClient;
+
+@{
+    ViewBag.Title = "Profit Calculation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string date = DateTime.Now.ToString("yyyy-MM-01 ");
+    Console.WriteLine (date);
+    string connStr = "server=localhost;user=magento;database=dotnet;port=3306;password=magento";
+    MySql.Data.MySqlClient.MySqlCommand cmd;
+    MySqlConnection conn = new MySqlConnection(connStr);
+    cmd = new MySql.Data.MySqlClient.MySqlCommand();
+
+    try
+    {
+        Console.WriteLine("Connecting to MySQL...");
+        conn.Open();
+        cmd.Connection = conn;
+
+        //***
+        // cmd.CommandText = "INSERT INTO demo VALUES(@Name, @ID, @Address, @Email)";
+        @* cmd.CommandText = "SELECT provident.employee_id, profit.profit FROM provident INNER JOIN profit ON provident.employee_id = profit.employee_id "; *@
+        cmd.CommandText = "SELECT * FROM profit  ";
+        cmd.Prepare();
+        var reader = cmd.ExecuteReader();
+        while (reader.Read()){
+            Console.WriteLine(reader["employee_id"]);
+            Console.WriteLine (reader["profit"]);
+        }
+        
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.ToString());
+    }
+    Console.WriteLine("Done.");
+}
+
+<h1>Profit Show</h1>
+<form asp-controller="Home" asp-action="GetProfit" method="post">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>Total Investement In TK :</td>
+            <td><input name="txtTK" type="text" required=true /></td>
+        </tr>
+        <tr>
+            <td>Period From :</td>
+            <td><input name="txtFrom" type="date" required=true /></td>
+        </tr>
+        <tr>
+            <td>Period To :</td>
+            <td><input name="txtTo" type="date" required=true /></td>
+        </tr>
+        <tr>
+            <td>First Day Of Last Month :</td>
+            <td><input name="txtLM" type="date" required=true /></td>
+        </tr>
+        <tr>
+            <td>Total Profit In TK :</td>
+            <td><input name="txtProfit" type="text" required=true /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input id="Submit1" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+<br /><br />
+
+<h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>

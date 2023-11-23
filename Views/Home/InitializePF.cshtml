@@ -1,0 +1,59 @@
+@{
+    ViewBag.Title = "Start Provident Fund";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Start Provident Fund For A New Employee</h1>
+<form asp-controller="Home" asp-action="StartPF" method="post">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>Period From :</td>
+            <td><input name="txtFrom" type="date" required=true /></td>
+        </tr>
+        <tr>    
+            <td>Period To :</td>
+            <td><input name="txtTo" type="date" required=true/></td>
+        </tr>
+        <tr>
+            <td>Employee ID :</td>
+            <td><input name="txtId" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>Opening Balance Of Employee Contribution :</td>
+            <td><input name="txtObec" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>Opening Balance Of Company Contribution :</td>
+            <td><input name="txtObcc" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>Amount Of Employee Contribution :</td>
+            <td><input name="txtAec" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>Amount Of Company Contribution :</td>
+            <td><input name="txtAcc" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>Employee Share Of Profit :</td>
+            <td><input name="txtEprofit" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>Company Share Of Profit :</td>
+            <td><input name="txtCprofit" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>Closing Balance Of Employee :</td>
+            <td><input name="txtCbe" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>Closing Balance Of Company :</td>
+            <td><input name="txtCce" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input id="Submit1" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+<br /><br />
+<h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>

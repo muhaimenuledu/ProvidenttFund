@@ -1,0 +1,25 @@
+@{
+    ViewBag.Title = "Salary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Employee Salary Management</h1>
+<form asp-controller="Home" asp-action="PostSalary" method="post">
+    <table class = "table table-bordered table-striped">
+        <tr>
+            <td>Employee ID :</td>
+            <td><input name="txtID" type="text" required=true /></td>
+        </tr>
+        <tr>
+            <td>Amount :</td>
+            <td><input name="txtAmount" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input id="Submit1" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+<br /><br />
+<a class="btn btn-primary btn-sm" href="/Home/SalaryList">View All</a>
+
+<h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>

@@ -1,0 +1,40 @@
+@{
+    ViewBag.Title = "Provident Fund";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Provident Fund Management</h1>
+<form asp-controller="Home" asp-action="PostPF" method="post">
+    <table class = "table table-bordered table-striped">
+        <tr>
+            <td>Period From :</td>
+            <td><input name="txtFrom" type="date" required=true /></td>
+        </tr>
+        <tr>
+            <td>Period To :</td>
+            <td><input name="txtTo" type="date" required=true/></td>
+        </tr>
+        <tr>
+            <td>First Day Of Last Month :</td>
+            <td><input name="txtLast" type="date" required=true/></td>
+        </tr>
+        @* <tr>
+            <td>Total Investement In TK :</td>
+            <td><input name="txtTK" type="text" required=true /></td>
+        </tr>
+
+        <tr>
+            <td>Total Profit In TK :</td>
+            <td><input name="txtProfit" type="text" required=true /></td>
+        </tr> *@
+        <tr>
+            <td colspan="2"><input id="Submit1" type="submit" value="submit" /></td>
+        </tr>
+
+        
+    </table>
+</form>
+<br /><br />
+@* <a class="btn btn-primary btn-sm" href="/Home/SalaryList">View All</a> *@
+
+<h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>

@@ -1,0 +1,82 @@
+@* @using WebMatrix.Data;
+@using System.Diagnostics;
+@using Microsoft.AspNetCore.Mvc;
+@using Prototype1.Models;
+@using System.Data.SqlClient; *@
+@using System;
+@* @using Npgsql;
+@using System.Data;
+@using System.Text;
+@using MySql.Data; *@
+@using MySql.Data.MySqlClient;
+
+@* @using MySqlX.XDevAPI;
+@using MySqlX.XDevAPI.Common;
+@using MySqlX.XDevAPI.CRUD; *@
+
+@{
+    ViewData["Title"] = "Employee Salary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Employee Salary Overview</h1>
+    <p>Employee Salary Page</p>
+
+</div>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Salary List</title>
+</head>
+
+<body>
+
+    @{
+        string connStr = "server=localhost;user=magento;database=dotnet;port=3306;password=magento";
+        MySql.Data.MySqlClient.MySqlCommand cmd;
+        MySqlConnection conn = new MySqlConnection(connStr);
+        cmd = new MySql.Data.MySqlClient.MySqlCommand();
+
+        try
+        {
+            Console.WriteLine("Connecting to MySQL...");
+            conn.Open();
+            cmd.Connection = conn;
+
+            //***
+            // cmd.CommandText = "INSERT INTO demo VALUES(@Name, @ID, @Address, @Email)";
+            cmd.CommandText = "SELECT * FROM salary";
+            cmd.Prepare();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        Console.WriteLine("Done.");
+    }
+
+    <table class="table table-bordered table-striped" style="border: 1px solid;">
+        <tr>
+            <th>Employee ID</th>
+            <th>Salary</th>
+        </tr>
+        @using (var reader = cmd.ExecuteReader())
+        {
+            @while (reader.Read())
+            {
+                <tr>
+                    <td>@reader["Employee_ID"]</td>
+                    <td>@reader["Salary"]</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Home/Salary?id=@reader["Employee_ID"]">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</body>
+
+</html>

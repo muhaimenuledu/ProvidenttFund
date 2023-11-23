@@ -1,0 +1,33 @@
+@{
+    ViewBag.Title = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Provident Fund MemberShip Form</h1>
+<form asp-controller="Home" asp-action="PostMember" method="post">
+    <table class = "table table-bordered table-striped">
+        <tr>
+            <td>Name :</td>
+            <td><input name="txtName" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>ID :</td>
+            <td><input name="txtID" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td>PF Starts From :</td>
+            <td><input name="txtStart" type="date" required=true/></td>
+        </tr>
+        <tr>
+            <td>PF Contribution % :</td>
+            <td><input name="txtContribution" type="text" required=true/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input id="Submit1" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+<br /><br />
+
+<h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>
+<a class="btn btn-primary btn-sm" href="/Home/MemberView">List Of Members</a>

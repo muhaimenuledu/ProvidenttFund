@@ -1,0 +1,248 @@
+@{
+  ViewData["Title"] = "Control Center";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+  <h1 class="pf-title">Provident Fund Management</h1>
+</div>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Designated Ares</title>
+</head>
+
+@* <a class="btn btn-primary btn-sm" href="/Home/EmployeeList">Employees</a>
+<a class="btn btn-primary btn-sm" href="/Home/Profile">New User</a> *@
+
+@* <div class="home-content">
+<div class="shortcut">
+<span class="shortcut-title"> Employee Management</span>
+<a class="shortcut-links" href="/Home/EmployeeList">List Of Employeees</a>
+<a class="shortcut-links" href="/Home/EmployeeList">Add New Employeee</a>
+<a class="shortcut-links" href="/Home/EmployeeList">Edit Employee Information</a>
+</div>
+
+<div class="shortcut">
+<span class="shortcut-title"> Salary Management</span>
+<a class="shortcut-links" href="/Home/Profile">Salary Overview</a>
+<a class="shortcut-links" href="/Home/Profile">Add Salary</a>
+<a class="shortcut-links" href="/Home/Profile">Edit Employee Salary</a>
+</div>
+
+<div class="shortcut">
+<span class="shortcut-title"> Fund Management</span>
+<a class="shortcut-links" href="/Home/SalaryList">Provident Fund Overview</a>
+<a class="shortcut-links" href="/Home/SalaryList">Create Employee Fund</a>
+<a class="shortcut-links" href="/Home/SalaryList">Edit Employee Fund</a>
+
+</div>
+
+</div> *@
+
+<body>
+
+  <div class="container-card">
+    <div class="wrapper">
+      <div class="banner-image"><img src ="https://www.wellable.co/blog/wp-content/uploads/2022/08/Employee%20Engagement%200811-1200x675.png" class="banner-image"> </div>
+      <h2 class="card-header"> Employee Management</h1>
+        <p>Have Too Many Employees!?<br />manage them efficiently.</p>
+    </div>
+
+    <div class="button-wrapper">
+      <a class="btn fill" href="/Home/EmployeeList">Employee</a>
+      <a class="btn fill" href="/Home/Profile">Add New Member</a>
+      <a class="btn fill" href="/Home/Profile">Update Information</a>
+    </div>
+
+  </div>
+
+
+  <div class="container-card">
+    <div class="wrapper">
+      <div class="banner-image"><img src ="https://www.zenefits.com/workest/wp-content/uploads/2023/01/compensation-vs-salary.jpg" class="banner-image"> </div>
+      <h2 class="card-header"> Salary Management</h1>
+        <p>Keep the cash flowing<br />with efficient salary management.</p>
+    </div>
+
+    <div class="button-wrapper">
+      <a class="btn fill" href="/Home/SalaryList">Salary</a>
+      <a class="btn fill" href="/Home/Salary">Add New Member</a>
+      <a class="btn fill" href="/Home/Salary">Update Information</a>
+    </div>
+
+  </div>
+
+  <div class="container-card">
+    <div class="wrapper">
+      <div class="banner-image"> <img src ="https://cdn5.vectorstock.com/i/1000x1000/44/19/mutual-fund-vector-7404419.jpg" class="banner-image"></div>
+      <h2 class="card-header"> Fund Management</h1>
+        <p>Too many transactions to manek?<br />Have them sorted</p>
+    </div>
+
+    <div class="button-wrapper">
+      <a class="btn fill" href="/Home/InitializePF">Start The Fund</a>
+      <a class="btn fill" href="/Home/MemberView">Membership</a>
+      <a class="btn fill" href="/Home/ProvidentFund">Monthly Update</a>
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>
+
+<style>
+  .pf-title {
+    font-weight: bold;
+    color: #00308F;
+    padding-bottom: 25px;
+
+  }
+
+  .shortcut {
+    height: 20%;
+    width: 30%;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid;
+    margin: 0 10px 10px 0;
+    vertical-align: top;
+  }
+
+  .shortcut-title {
+    background: skyblue;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .shortcut-links {
+    display: inline-block;
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: #00BFFF;
+  }
+</style>
+
+<style>
+  body {
+    /* solid background */
+    background: rgb(0, 212, 255);
+
+    /* gradient background*/
+    background: linear-gradient(45deg, rgba(0, 212, 255, 1) 0%, rgba(11, 3, 45, 1) 100%);
+
+    /* photo background */
+    background-image: url(https://images.unsplash.com/photo-1619204715997-1367fe5812f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1889&q=80);
+    background-size: cover;
+    background-position: center;
+
+    @*display:flex;*@@*align-items:center;*@@*justify-content:center;*@height: 100px;
+
+  }
+
+  .container-card {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.25);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 38px;
+    filter: drop-shadow(0 30px 10px rgba(0, 0, 0, 0.125));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 32%;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+    min-height:700px;
+  }
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+
+  }
+
+  .banner-image {
+    @* background-image: url(https://www.wellable.co/blog/wp-content/uploads/2022/08/Employee%20Engagement%200811-1200x675.png); *@
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.255)
+  }
+
+  p {
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 150%;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .button-wrapper {
+    margin-top: 18px;
+  }
+
+  .btn {
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 12px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+
+  .btn+.btn {
+    margin-left: 10px;
+  }
+
+  .outline {
+    background: transparent;
+    color: rgba(0, 212, 255, 0.9);
+    border: 1px solid rgba(0, 212, 255, 0.6);
+    transition: all .3s ease;
+
+  }
+
+  .outline:hover {
+    transform: scale(1.125);
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.9);
+    transition: all .3s ease;
+  }
+
+  .fill {
+    background: rgba(0, 212, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
+    filter: drop-shadow(0);
+    font-weight: bold;
+    transition: all .3s ease;
+  }
+
+  .fill:hover {
+    transform: scale(1.125);
+    border-color: rgba(255, 255, 255, 0.9);
+    filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.125));
+    transition: all .3s ease;
+  }
+
+  .card-header {
+    color: white;
+  }
+</style>

@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Test1 Page";
+}
+
+
+
+<h1>User Login Page</h1>
+<form asp-controller="Test" asp-action="GetDetails" method="post">
+    <table>
+        <tr>
+            <td>Username :</td>
+            <td><input name="txtName" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Password :</td>
+            <td><input name="txtPass" type="text" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input id="Submit1" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+<br /><br />
+
+<h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>

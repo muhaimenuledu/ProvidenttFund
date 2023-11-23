@@ -1,0 +1,84 @@
+@* @using WebMatrix.Data;
+@using System.Diagnostics;
+@using Microsoft.AspNetCore.Mvc;
+@using Prototype1.Models;
+@using System.Data.SqlClient; *@
+@using System;
+@* @using Npgsql;
+@using System.Data;
+@using System.Text;
+@using MySql.Data; *@
+@using MySql.Data.MySqlClient;
+
+@* @using MySqlX.XDevAPI;
+@using MySqlX.XDevAPI.Common;
+@using MySqlX.XDevAPI.CRUD; *@
+
+@{
+    ViewData["Title"] = "Members Taking Provident Fund";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Provident Fund Members</h1>
+</div>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Members List</title>
+</head>
+
+<body>
+
+    @{
+        string connStr = "server=localhost;user=magento;database=dotnet;port=3306;password=magento";
+        MySql.Data.MySqlClient.MySqlCommand cmd;
+        MySqlConnection conn = new MySqlConnection(connStr);
+        cmd = new MySql.Data.MySqlClient.MySqlCommand();
+
+        try
+        {
+            Console.WriteLine("Connecting to MySQL...");
+            conn.Open();
+            cmd.Connection = conn;
+
+            //***
+            // cmd.CommandText = "INSERT INTO demo VALUES(@Name, @ID, @Address, @Email)";
+            cmd.CommandText = "SELECT * FROM membership";
+            cmd.Prepare();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        Console.WriteLine("Done.");
+    }
+
+    <table class="table table-bordered table-striped" style="border: 1px solid;">
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>PF Starts From</th>
+            <th>PF Contribution %</th>
+        </tr>
+        @using (var reader = cmd.ExecuteReader())
+        {
+            @while (reader.Read())
+            {
+                <tr>
+                    <td>@reader["employee_id"]</td>
+                    <td>@reader["employee_name"]</td>
+                    <td>@reader["pf_start_date"]</td>
+                    <td>@reader["pf_cbtn_rate"]</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Home/Salary?id=@reader["employee_id"]">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</body>
+
+</html>
